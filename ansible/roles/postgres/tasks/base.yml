@@ -116,6 +116,11 @@
     name={{ postgres__db_user }}
     password={{ postgres__db_password }}
 
+- name: Ensure a locale exists
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
+
 - name: Create database
   become: true
   become_user: postgres

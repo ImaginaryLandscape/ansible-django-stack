@@ -83,14 +83,13 @@ install_nrpe: True
 
 ## UNIX USERS ##
 # define list of users here
-users:
-  - username: jjasinski
-    name: Joe Jasinski
-    groups:
-      - "{{shared_group}}"
-    uid: 1010
-    password: '!'
-    ssh_key:
-      - "ssh-rsa AAAAA.... foo@machine"
-    shell: /bin/bash
-## END UNIX USERS ##
+# users:
+#   - username: jjasinski
+#     name: Joe Jasinski
+#     groups:
+#       - "{{shared_group}}"
+#     uid: 1010
+#     password: ''
+#     ssh_key:
+#       - "ssh-rsa AAAAA.... foo@machine"
+#     shell: /bin/bash
