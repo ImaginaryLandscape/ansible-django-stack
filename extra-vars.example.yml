@@ -1,16 +1,21 @@
 ---
 
 # See playbooks/group_vars/all.yml for a list of common overridable variables.
+# Note: "site_user", "db_user", and "db_name" will all default to "site_name"
 site_name: "example"
-db_password: change_me
-git_repo: https://git.example.com/example/example.git
-# If the git_repo is private, specify the path to the ssh private key needed
-# to download that repo. This would be the path to the key on your local machine.
-#site_user_ssh_private_key_src: /Users/jjasinski/.ssh/id_rsa
+db_password: "change_me"
+# Location of the git repo to be cloned into "<site_name>/proj"
+git_repo: "git@github.com:MyAccount/my-repo.git"
+
+# If the git_repo is private, specify the path to the ssh private key
+# needed to download that repo.
+#site_user_ssh_private_key_src: "/home/<your-username>/.ssh/id_rsa"
 
 # Indicates what version of python to setup the app with. This must be a
 # version that's available on the system.
-python_version: python3.5   # or python2.7
+timezone: "America/Chicago"
+application_runner: "uwsgi" # "uwsgi" or "gunicorn"
+python_version: "python3.5"   # or "python2.7"
 
 # Customize what services to install
 install_ntp: True

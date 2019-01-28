@@ -32,7 +32,7 @@ Requires Ansible 2.4+
 ## Playbooks available
 
 For a full provision, mostly use the `playbook-all.yml` (and customize the
-ROLL FLAGS - see below).
+ROLE FLAGS - see below).
 
  - add-user.yml = playbook for adding a UNIX user
  - playbook-all.yml = Run all roles to build a single server with everything
@@ -65,12 +65,12 @@ variables when provisioning by setting them in an `extra-vars.yml`. Copy the
 IMPORTANT: Customize the following at minimum, but likely more is needed:
   - site_name
   - db_password (if running a database role)
-  - git_rep (if installing a Django codebase)
+  - git_repo (if installing a Django codebase)
 
-IMPORTANT: If you want to run a specific roll, in ADDITION to being included
-in the roles section of a playbook, the roll must ALSO be enabled via setting
+IMPORTANT: If you want to run a specific role, in ADDITION to being included
+in the roles section of a playbook, the role must ALSO be enabled via setting
 a "ROLE FLAG" variable `install_foo: True` in `extra-vars.yml`, where foo is the
-name of the roll.  For example, `install_mysql: True`. For the full list of of
+name of the role.  For example, `install_mysql: True`. For the full list of of
 "ROLE FLAG" variables, see the section of the `ansible/playbooks/group_vars`
 titled "ROLE FLAGS TO ENABLE/DISABLE" to see them and their defaults.
 
@@ -107,7 +107,13 @@ Define the following inventory, changing connection parameters as needed.
     [localhost]
     127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_become=true ansible_ssh_private_key_file=/path/to/private_key
 
-Note: if running on Ubuntu 16.04, you need to execute the following first.
+Note: The target server must have Python installed before the Ansible
+scripts will run.  The most basic Rackspace server with Ubuntu will
+not install Python by default.  HOWEVER if the "Protect your data with
+weekly Cloud Backups" box is checked when you create the server, then
+Python will be installed, and this has the side-effect of letting you
+run the Ansible scripts. To be safe, check to make sure that Python is
+there. If it isn't, you need to execute the following first:
 
     ansible-playbook -vvvv -i ansible/inventory.ini ansible/playbooks/playbook-install-python2.yml
 

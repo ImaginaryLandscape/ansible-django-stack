@@ -10,10 +10,10 @@ site_user: "{{site_name}}"
 site_user_home: "/home/{{ site_user }}"
 site_user_ssh_private_key: "{{ site_user_home }}/.ssh/id_rsa"
 
-# If the git_repo is private, specify the path to the ssh private key needed
-# to download that repo. This would be the path to the key on your local machine.
-# i.e. /home/myuser/.ssh/id_rsa
-site_user_ssh_private_key_src: ''
+# If the git_repo is private, specify the path to the ssh private key
+# needed to download that repo. This would be the path to the key on
+# your local machine.  e.g., /home/myuser/.ssh/id_rsa
+site_user_ssh_private_key_src: ""
 
 # The group that will be assigned to all of the project files.
 shared_group: "worker"
@@ -79,17 +79,18 @@ install_postfix: True
 install_mysql: True
 install_redis: True
 install_nrpe: True
-## END ROLL FLAGS ##
+## END ROLE FLAGS ##
 
 ## UNIX USERS ##
 # define list of users here
 # users:
-#   - username: jjasinski
-#     name: Joe Jasinski
+#   - username: fbarr
+#     name: Fu Barr
 #     groups:
 #       - "{{shared_group}}"
 #     uid: 1010
-#     password: ''
+#     password: '1234567'
 #     ssh_key:
-#       - "ssh-rsa AAAAA.... foo@machine"
+#       - "ssh-rsa AAAA..."
 #     shell: /bin/bash
+## END UNIX USERS ##

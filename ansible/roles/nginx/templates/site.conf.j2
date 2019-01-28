@@ -54,8 +54,9 @@ server {
     }
 
     location @proxy_to_app {
-
       {% if nginx__application_runner == "uwsgi" %}
+        # The parameters below are for running with uWSGI
+
         uwsgi_param Host $http_host;
         uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
         uwsgi_param X-Real-IP $remote_addr;
@@ -64,6 +65,8 @@ server {
         include uwsgi_params;
         uwsgi_pass app_server;
       {% else %}
+
+        # The parameters below are for running with Gunicorn
         proxy_redirect off;
         proxy_pass_header Server;
 

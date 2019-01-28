@@ -2,19 +2,38 @@
 project = {{django__uwsgi_site_name}}
 base_dir = {{ django__site_dir }}
 
-socket = %(base_dir)/run/django.socket
+; Django-related settings
+; the base directory (full path)
 chdir = {{django__proj_dir}}/{{django__site_name}}
-;http-socket = localhost:9000
-processes = {{django__uwsgi_processes}}
-pidfile = %(base_dir)/run/django.pid
-env = DJANGO_SETTINGS_MODULE={{django__site_name}}.settings
-master = true
-harakiri = {{django__uwsgi_harakiri}}
-vacuum = true
-max-requests = {{django__uwsgi_max_requests}}
-chmod-socket = 666
+; Django's wsgi file
 module = {{django__site_name}}.wsgi:application
+; the virtualenv (full path)
 home = {{django__virtualenv_dir}}
-uid = {{django__site_user}}
+
+; process-related settings
+; master
+master = true
+; maximum number of worker processes
+processes = {{django__uwsgi_processes}}
+; the socket (use the full path to be safe)
+socket = %(base_dir)/run/django.socket
+; ... appropriate permissions - may be needed
+chmod-socket = 666
+; clear environment on exit
+vacuum = true
+; set this environment variable
+env = DJANGO_SETTINGS_MODULE={{django__site_name}}.settings
+; create a pidfile
+safe-pidfile = %(base_dir)/run/django.pid
+; respawn processes taking more than {{django__uwsgi_harakiri}} seconds
+harakiri = {{django__uwsgi_harakiri}}
+; respawn processes after serving {{django__uwsgi_max_requests}} requests
+max-requests = {{django__uwsgi_max_requests}}
+; logging 
 logto = %(base_dir)/log/django-uwsgi.log
 logdate
+
+;http-socket = localhost:9000
+;uid = {{django__site_user}}
+
+; This file based on documentation at https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html

@@ -115,6 +115,7 @@
   postgresql_user:
     name={{ postgres__db_user }}
     password={{ postgres__db_password }}
+    encrypted=yes
 
 - name: Ensure a locale exists
   locale_gen:
@@ -131,6 +132,7 @@
     lc_collate='en_US.UTF-8'
     lc_ctype='en_US.UTF-8'
     state=present
+    template='template0'
 
 - name: ensure user does not have unnecessary privilege
   become: true
