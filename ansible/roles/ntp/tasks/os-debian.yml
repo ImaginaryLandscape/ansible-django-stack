@@ -1,7 +1,7 @@
 ---
 
 - name: Install NTP Deamon
-  apt: name=ntp state=installed
+  apt: name=ntp state=present
 
 - name: Start NTPD
   service: name=ntp state=started enabled={{ntp__enabled_on_startup}}

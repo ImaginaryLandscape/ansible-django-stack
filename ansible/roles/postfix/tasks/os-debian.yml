@@ -1,7 +1,7 @@
 ---
 
 - name: Install Postfix Deamon
-  apt: name=postfix state=installed
+  apt: name=postfix state=present
 
 - name: Install Postfix Deamon
   apt: name={{ package_to_install }} update_cache={{ update_apt_cache }} state=latest
