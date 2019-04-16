@@ -3,6 +3,13 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+
+SITE_NAME = "chipy"
+GITHUB_REPO = "https://github.com/chicagopython/chipy.org.git"
+PYTHON_VERSION = "python3.5"
+SITE_USER_SSH_PRIVATE_KEY_SRC = "/Users/jjasinski/.ssh/id_rsa"
+
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if Vagrant.has_plugin?("vagrant-cachier")
@@ -45,16 +52,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
              "install_postgres" => true,
              "install_mysql" => true,
              "install_redis" => true,
-             "site_name" => "chipy",
-             "git_repo" => "https://github.com/chicagopython/chipy.org.git",
-             "python_version" => "python3.5",
-             #"site_user_ssh_private_key_src" => "/Users/jjasinski/.ssh/id_rsa",
+             "install_elasticsearch"=> false,
+             "site_name" => SITE_NAME,
+             "git_repo" => GITHUB_REPO,
+             "python_version" => PYTHON_VERSION,
+             "site_user_ssh_private_key_src" => SITE_USER_SSH_PRIVATE_KEY_SRC,
 
              # Ubuntu 16.04 settings (DONT CHANGE - Needed for Ansible)
              #"ansible_python_interpreter" => "/usr/bin/python2.7",
              "ansible_python_interpreter" => "/usr/bin/python3",  # ansible 2.4+ with python3 support
         }
-        ansible.sudo = true
+        ansible.become = true
         ansible.limit = "all"
       end
   end
@@ -80,7 +88,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
              "git_repo" => "https://github.com/chicagopython/chipy.org.git",
              "python_version" => "python2.7",
         }
-        ansible.sudo = true
+        ansible.become = true
         ansible.limit = "all"
       end
   end
@@ -103,7 +111,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
              "site_name" => "jazstudios",
              "python_version" => "python2.7",
         }
-        ansible.sudo = true
+        ansible.become = true
         ansible.limit = "all"
       end
   end
