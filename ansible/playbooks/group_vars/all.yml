@@ -3,7 +3,7 @@
 
 ## APP CONFIGURATION ##
 # The name of the app. Should be a slug.
-site_name: "mysite"
+site_name: "roph"
 
 # The user that will own all of the project files.
 site_user: "{{site_name}}"
@@ -13,7 +13,7 @@ site_user_ssh_private_key: "{{ site_user_home }}/.ssh/id_rsa"
 # If the git_repo is private, specify the path to the ssh private key
 # needed to download that repo. This would be the path to the key on
 # your local machine.  e.g., /home/myuser/.ssh/id_rsa
-site_user_ssh_private_key_src: ""
+site_user_ssh_private_key_src: "/home/marat/.ssh/id_rsa_github_2"
 
 # The group that will be assigned to all of the project files.
 shared_group: "worker"
@@ -22,7 +22,7 @@ shared_group: "worker"
 db_user: "{{site_name}}"
 
 # The database password that the app will use
-db_password: "change_me"
+db_password: "94839b8d6a292863e64f9113747764c2c744152a4960f05c"
 
 # The database name that the app will use.
 db_name: "{{site_name}}"
@@ -31,7 +31,8 @@ db_name: "{{site_name}}"
 python_version: "python3.5" # "python2.7" or "python3.4" or "python3.5"
 
 # The git repo to checkout.
-git_repo: "https://github.com/chicagopython/chipy.org.git"
+git_repo: "git@github.com:ImaginaryLandscape/sucrit.git"
+# git_repo: "https://github.com/chicagopython/chipy.org.git"
 
 # The branch to checkout
 git_branch: "master"
@@ -47,8 +48,17 @@ site_dir: "{{sites_dir}}{{site_name}}/"
 htdocs_dir: "{{site_dir}}htdocs/"
 htdocs_media_dir: "{{htdocs_dir}}media/"
 htdocs_static_dir: "{{htdocs_dir}}static/"
+
+## var/ folder for old 
+site_var_dir: "{{site_dir}}var/"
+site_var_log_dir: "{{site_var_dir}}/log"
+site_var_run_dir: "{{site_var_dir}}/run"
+
+## new
 site_log_dir: "{{site_dir}}log/"
 site_run_dir: "{{site_dir}}run/"
+
+
 site_etc_dir: "{{site_dir}}etc/"
 site_nginx_dir: "{{site_etc_dir}}nginx/"
 project_dir: "{{site_dir}}proj/"

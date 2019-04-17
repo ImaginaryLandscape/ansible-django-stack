@@ -19,21 +19,34 @@
     group={{ sites__shared_group }}
     mode=2775
 
-- name: Creates log directory
+
+
+- name: Creates var directory
   file:
-    path={{ sites__site_log_dir }}
+    path={{ sites__site_var_dir }}
     state=directory
     owner={{ sites__site_user }}
     group={{ sites__shared_group }}
     mode=2775
 
-- name: Creates run directory
+- name: Creates  var log directory
   file:
-    path={{ sites__site_run_dir }}
+    path={{ sites__site_var_run_dir }}
     state=directory
     owner={{ sites__site_user }}
     group={{ sites__shared_group }}
     mode=2775
+
+- name: Creates var run directory
+  file:
+    path={{ sites__site_var_log_dir }}
+    state=directory
+    owner={{ sites__site_user }}
+    group={{ sites__shared_group }}
+    mode=2775
+
+
+
 
 - include: setup_virtualenv.yml
   tags:

@@ -3,7 +3,7 @@
 # See playbooks/group_vars/all.yml for a list of common overridable variables.
 # Note: "site_user", "db_user", and "db_name" will all default to "site_name"
 site_name: "example"
-db_password: "change_me"
+db_password: "94839b8d6a292863e64f9113747764c2c744152a4960f05c"
 # Location of the git repo to be cloned into "<site_name>/proj"
 git_repo: "git@github.com:MyAccount/my-repo.git"
 

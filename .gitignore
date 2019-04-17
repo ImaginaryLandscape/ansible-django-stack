@@ -5,3 +5,4 @@ log/
 *.log
 ansible/inventory*.ini
 extra-vars.yml
+settings.py.j2

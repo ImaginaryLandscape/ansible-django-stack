@@ -31,6 +31,11 @@
         recurse=yes
         mode=g+w
 
+    - name: Pip install setuptools
+      pip: 
+          name: setuptools
+          state: latest
+
     - name: Install requirements.txt with pip
       pip:
         requirements={{ django__requirements }}
@@ -38,6 +43,13 @@
       become: yes
       become_user: "{{ site_user }}"
       ignore_errors: yes
+
+    - name: Copy the settings.py config file
+      template:
+        src=settings.py.j2
+        dest={{ django__settings_dir }}
+        owner={{ django__site_user }}
+        group={{ django__shared_group }}
 
     - name: Run Django ./manage.py collectstatic
       django_manage: >

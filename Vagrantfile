@@ -4,10 +4,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 
-SITE_NAME = "chipy"
-GITHUB_REPO = "https://github.com/chicagopython/chipy.org.git"
+SITE_NAME = "roph"
+GITHUB_REPO = "git@github.com:ImaginaryLandscape/roph.git"
+GITHUB_BRANCH = "feature/python3"
 PYTHON_VERSION = "python3.5"
-SITE_USER_SSH_PRIVATE_KEY_SRC = "/Users/jjasinski/.ssh/id_rsa"
+SITE_USER_SSH_PRIVATE_KEY_SRC = "/home/marat/.ssh/id_rsa_github_2"
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -33,8 +34,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define 'xenial', autostart: false do |box|
       box.vm.box = "ubuntu/xenial64"
-      box.vm.network "forwarded_port", guest: 80, host: 8080
-      box.vm.network "forwarded_port", guest: 443, host: 4443
+      box.vm.network "forwarded_port", guest: 80, host: 8880, auto_correct: true
+      box.vm.network "forwarded_port", guest: 443, host: 4443, auto_correct: true
+      box.vm.network "forwarded_port", guest: 8000, host: 18000, auto_correct: true
+      box.vm.network "forwarded_port", guest: 8001, host: 18001, auto_correct: true
+      box.vm.network "forwarded_port", guest: 8002, host: 18002, auto_correct: true
+      box.vm.synced_folder "/home/marat/Workspace/synced-folder/ansible-roph", "/home/vagrant/test", disabled: true
+      box.vm.synced_folder ".", "/vagrant", disabled: false
       box.vm.provision :ansible do |ansible|
         ansible.playbook = "ansible/playbooks/playbook-all.yml"
         #ansible.playbook = "ansible/playbooks/playbook-install-python2.yml"
@@ -55,6 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
              "install_elasticsearch"=> false,
              "site_name" => SITE_NAME,
              "git_repo" => GITHUB_REPO,
+             "git_branch" => GITHUB_BRANCH,
              "python_version" => PYTHON_VERSION,
              "site_user_ssh_private_key_src" => SITE_USER_SSH_PRIVATE_KEY_SRC,
 
@@ -65,6 +72,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.become = true
         ansible.limit = "all"
       end
+      # box.vm.synced_folder "/home/marat/Workspace/synced-folder/ansible-roph", "/srv/sites/roph/proj/roph", 
+      #   disabled: false,
+      #   id: "vagrant",
+      #   owner: "vagrant",
+      #   group: "vagrant",
+      # mount_options: ["dmode=775,fmode=664"]
   end
 
   config.vm.define 'trusty', autostart: false do |box|
