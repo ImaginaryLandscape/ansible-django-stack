@@ -51,6 +51,26 @@
         owner={{ django__site_user }}
         group={{ django__shared_group }}
 
+    - name: Run Django ./manage.py makemigrations
+      django_manage: >
+        command=makemigrations
+        app_path={{ django__app_dir }}
+        settings={{ django__settings }}
+        virtualenv={{ django__virtualenv_dir }}
+      become: yes
+      become_user: "{{ site_user }}"
+      ignore_errors: yes
+
+    - name: Run Django ./manage.py migrate
+      django_manage: >
+        command=migrate
+        app_path={{ django__app_dir }}
+        settings={{ django__settings }}
+        virtualenv={{ django__virtualenv_dir }}
+      become: yes
+      become_user: "{{ site_user }}"
+      ignore_errors: yes
+
     - name: Run Django ./manage.py collectstatic
       django_manage: >
         command=collectstatic

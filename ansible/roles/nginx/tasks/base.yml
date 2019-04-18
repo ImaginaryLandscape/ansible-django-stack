@@ -87,7 +87,8 @@
 
 - name: Copy the nginx site configuration file
   template:
-    src=site.conf.j2
+    # src=site.conf.j2
+    src=site.conf.maint.j2
     dest={{ nginx__site_nginx_dir }}site.conf
     mode=0664
 
