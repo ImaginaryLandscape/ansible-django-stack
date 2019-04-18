@@ -51,8 +51,8 @@ htdocs_static_dir: "{{htdocs_dir}}static/"
 
 ## var/ folder for old 
 site_var_dir: "{{site_dir}}var/"
-site_var_log_dir: "{{site_var_dir}}/log"
-site_var_run_dir: "{{site_var_dir}}/run"
+site_var_log_dir: "{{site_var_dir}}log/"
+site_var_run_dir: "{{site_var_dir}}run/"
 
 ## new
 site_log_dir: "{{site_dir}}log/"

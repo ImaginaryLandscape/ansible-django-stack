@@ -8,7 +8,7 @@ ssl_session_tickets off;
 
 
 upstream app_server {
-    server unix:{{ site_var_run_dir }}django.socket; ;; added var/
+    server unix:{{ site_var_run_dir }}django.socket;
 }
 
 server {
@@ -18,7 +18,11 @@ server {
     #autoindex on;
 
     include {{ site_nginx_dir }}locations.conf;
-    rewrite  ^ https://$host$request_uri? permanent;
+     rewrite  ^ https://$host$request_uri? permanent;
+    #location / {
+    #return 301 https://$host$request_uri;
+    #}
+
 }
 
 server {
