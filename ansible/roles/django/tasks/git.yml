@@ -46,8 +46,8 @@
 
     - name: Copy the settings.py config file
       template:
-        src=settings.py.j2
-        dest={{ django__settings_dir }}
+        src={{ site_name }}.settings.py.j2
+        dest={{ django__settings_file }}
         owner={{ django__site_user }}
         group={{ django__shared_group }}
 
@@ -80,5 +80,6 @@
       become: yes
       become_user: "{{ site_user }}"
       ignore_errors: yes
+
   rescue:
     - debug: msg="environment checkout failed"
