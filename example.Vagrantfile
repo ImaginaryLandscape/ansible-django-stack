@@ -3,13 +3,11 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-
-SITE_NAME = "roph"
-GITHUB_REPO = "git@github.com:ImaginaryLandscape/roph.git"
-GITHUB_BRANCH = "feature/python3"
+SITE_NAME = "site_name"
+GITHUB_REPO = "github/repo"
+GITHUB_BRANCH = "github/branch"
 PYTHON_VERSION = "python3.5"
-SITE_USER_SSH_PRIVATE_KEY_SRC = "/home/marat/.ssh/id_rsa_github_2"
-
+SITE_USER_SSH_PRIVATE_KEY_SRC = "path/to/your/key"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -37,9 +35,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       box.vm.network "forwarded_port", guest: 80, host: 8880, auto_correct: true
       box.vm.network "forwarded_port", guest: 443, host: 4443, auto_correct: true
       box.vm.network "forwarded_port", guest: 8000, host: 18000, auto_correct: true
-      box.vm.network "forwarded_port", guest: 8001, host: 18001, auto_correct: true
-      box.vm.network "forwarded_port", guest: 8002, host: 18002, auto_correct: true
-      box.vm.synced_folder "/home/marat/Workspace/synced-folder/ansible-roph", "/home/vagrant/test", disabled: true
       box.vm.synced_folder ".", "/vagrant", disabled: false
       box.vm.provision :ansible do |ansible|
         ansible.playbook = "ansible/playbooks/playbook-all.yml"
@@ -72,14 +67,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.become = true
         ansible.limit = "all"
       end
-      # box.vm.synced_folder "/home/marat/Workspace/synced-folder/ansible-roph", "/srv/sites/roph/proj/roph", 
-      #   disabled: false,
-      #   id: "vagrant",
-      #   owner: "vagrant",
-      #   group: "vagrant",
-      # mount_options: ["dmode=775,fmode=664"]
   end
-
+  
   config.vm.define 'trusty', autostart: false do |box|
       box.vm.box = "ubuntu/trusty64"
       box.vm.network "forwarded_port", guest: 80, host: 8081

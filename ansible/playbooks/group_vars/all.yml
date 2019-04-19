@@ -3,7 +3,7 @@
 
 ## APP CONFIGURATION ##
 # The name of the app. Should be a slug.
-site_name: "roph"
+site_name: "site_name"
 
 # The user that will own all of the project files.
 site_user: "{{site_name}}"
@@ -13,7 +13,7 @@ site_user_ssh_private_key: "{{ site_user_home }}/.ssh/id_rsa"
 # If the git_repo is private, specify the path to the ssh private key
 # needed to download that repo. This would be the path to the key on
 # your local machine.  e.g., /home/myuser/.ssh/id_rsa
-site_user_ssh_private_key_src: "/home/marat/.ssh/id_rsa_github_2"
+# site_user_ssh_private_key_src: "/home/myuser/.ssh/id_rsa"
 
 # The group that will be assigned to all of the project files.
 shared_group: "worker"
@@ -31,7 +31,6 @@ db_name: "{{site_name}}"
 python_version: "python3.5" # "python2.7" or "python3.4" or "python3.5"
 
 # The git repo to checkout.
-git_repo: "git@github.com:ImaginaryLandscape/sucrit.git"
 # git_repo: "https://github.com/chicagopython/chipy.org.git"
 
 # The branch to checkout
