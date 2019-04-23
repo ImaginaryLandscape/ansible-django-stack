@@ -138,5 +138,18 @@
   become: true
   become_user: postgres
   postgresql_user:
-    name={{postgres__db_user}}
+    name={{ postgres__db_user }}
     role_attr_flags=NOSUPERUSER,NOCREATEDB
+
+- name: Copy DB dump file
+  copy:
+    src: "{{ postgres__db_dump_file_src }}"
+    dest: "{{ postgres__db_dump_file_dest }}"
+
+- name: Restore DB dump file
+  become: true
+  become_user: postgres
+  postgresql_db:
+    name={{ postgres__db_user }}
+    state=restore
+    target={{ postgres__db_dump_file_dest }}

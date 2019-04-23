@@ -27,6 +27,9 @@ db_password: "94839b8d6a292863e64f9113747764c2c744152a4960f05c"
 # The database name that the app will use.
 db_name: "{{site_name}}"
 
+# The database dump file the app will use
+db_dump_file: "/path/to/your/dump/file"
+
 # The python binary to use in the virtualenv.
 python_version: "python3.5" # "python2.7" or "python3.4" or "python3.5"
 
@@ -88,6 +91,9 @@ install_postfix: True
 install_mysql: True
 install_redis: True
 install_nrpe: True
+
+# install_transfer: True
+
 ## END ROLE FLAGS ##
 
 ## UNIX USERS ##

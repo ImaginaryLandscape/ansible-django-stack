@@ -21,3 +21,6 @@ postgres__maintenance_work_mem: 16MB
 postgres__wal_buffers: -1
 postgres__effective_cache_size: 128MB
 postgres__log_statement: 'none'
+
+postgres__db_dump_file_src: "{{ db_dump_file }}"
+postgres__db_dump_file_dest: "/srv/dump.sql"
