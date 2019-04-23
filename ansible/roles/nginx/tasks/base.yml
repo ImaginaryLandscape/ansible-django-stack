@@ -62,6 +62,11 @@
     group={{ nginx__shared_group }}
     mode=2775
 
+- name: Copy  media content
+  copy:
+    src: "{{ nginx__site_htdocs_media_content_src }}"
+    dest: "{{ nginx__site_htdocs_media_content_dest }}"
+
 - name: Creates htdocs static directory
   file:
     path={{ nginx__site_htdocs_static_dir }}

@@ -37,3 +37,6 @@ nginx__application_runner: "{{ application_runner }}"
 nginx__site_name: "{{ site_name }}"
 nginx__site_user: "{{ site_user }}"
 nginx__shared_group: "{{ shared_group }}"
+
+nginx__site_htdocs_media_content_src: "{{ media_content }}"
+nginx__site_htdocs_media_content_dest: "{{ nginx__site_htdocs_media_dir }}"

@@ -30,6 +30,9 @@ db_name: "{{site_name}}"
 # The database dump file the app will use
 db_dump_file: "/path/to/your/dump/file"
 
+# The media folder the app will use
+media_content: "media/fodler"
+
 # The python binary to use in the virtualenv.
 python_version: "python3.5" # "python2.7" or "python3.4" or "python3.5"
 
