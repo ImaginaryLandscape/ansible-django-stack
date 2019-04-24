@@ -54,6 +54,11 @@
     group={{ nginx__shared_group }}
     mode=2775
 
+- name: Copy/Extract media content
+  unarchive:
+    src: "{{ nginx__site_htdocs_media_content_src }}"
+    dest: "{{ nginx__site_htdocs_dir }}"
+
 - name: Creates htdocs media directory
   file:
     path={{ nginx__site_htdocs_media_dir }}
@@ -61,11 +66,6 @@
     owner={{ nginx__site_user }}
     group={{ nginx__shared_group }}
     mode=2775
-
-- name: Copy  media content
-  copy:
-    src: "{{ nginx__site_htdocs_media_content_src }}"
-    dest: "{{ nginx__site_htdocs_media_content_dest }}"
 
 - name: Creates htdocs static directory
   file:

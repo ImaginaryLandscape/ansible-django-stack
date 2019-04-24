@@ -42,6 +42,7 @@
     - psmisc # pstree
     - lsof
     - iptables-persistent
+    - unzip
   loop_control:
     loop_var: package_to_install
 
