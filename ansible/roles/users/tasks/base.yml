@@ -6,8 +6,9 @@
 
 - name: Create new site user
   user:
-    name={{ users__site_user }}
-    groups={{ users__shared_group }}
+    name="{{ users__site_user }}"
+    password="{{users__site_user}}"
+    groups="{{ users__sudo_group }}, {{ users__shared_group }}"
     shell=/bin/bash
     home={{ users__site_user_home }}
     append=yes
@@ -27,7 +28,6 @@
     owner: "{{ users__site_user }}"
     group: "{{ users__shared_group }}"
   when: not(users__site_user_ssh_private_key_src | trim == '')
-
 
 - name: Per-user group creation
   group: name="{{ item.username }}" state="present"

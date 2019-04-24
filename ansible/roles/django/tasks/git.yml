@@ -36,13 +36,13 @@
           name: setuptools
           state: latest
 
-    - name: Install requirements.txt with pip
-      pip:
-        requirements={{ django__requirements }}
-        virtualenv={{ django__virtualenv_dir }}
-      become: yes
-      become_user: "{{ site_user }}"
-      ignore_errors: yes
+    # - name: Install requirements.txt with pip
+    #   pip:
+    #     requirements={{ django__requirements }}
+    #     virtualenv={{ django__virtualenv_dir }}
+    #   become: yes
+    #   become_user: "{{ site_user }}"
+    #   ignore_errors: yes
 
     - name: Copy the settings.py config file
       template:
@@ -51,35 +51,35 @@
         owner={{ django__site_user }}
         group={{ django__shared_group }}
 
-    - name: Run Django ./manage.py makemigrations
-      django_manage: >
-        command=makemigrations
-        app_path={{ django__app_dir }}
-        settings={{ django__settings }}
-        virtualenv={{ django__virtualenv_dir }}
-      become: yes
-      become_user: "{{ site_user }}"
-      ignore_errors: yes
+    # - name: Run Django ./manage.py makemigrations
+    #   django_manage: >
+    #     command=makemigrations
+    #     app_path={{ django__app_dir }}
+    #     settings={{ django__settings }}
+    #     virtualenv={{ django__virtualenv_dir }}
+    #   become: yes
+    #   become_user: "{{ site_user }}"
+    #   ignore_errors: yes
 
-    - name: Run Django ./manage.py migrate
-      django_manage: >
-        command=migrate
-        app_path={{ django__app_dir }}
-        settings={{ django__settings }}
-        virtualenv={{ django__virtualenv_dir }}
-      become: yes
-      become_user: "{{ site_user }}"
-      ignore_errors: yes
+    # - name: Run Django ./manage.py migrate
+    #   django_manage: >
+    #     command=migrate
+    #     app_path={{ django__app_dir }}
+    #     settings={{ django__settings }}
+    #     virtualenv={{ django__virtualenv_dir }}
+    #   become: yes
+    #   become_user: "{{ site_user }}"
+    #   ignore_errors: yes
 
-    - name: Run Django ./manage.py collectstatic
-      django_manage: >
-        command=collectstatic
-        app_path={{ django__app_dir }}
-        settings={{ django__settings }}
-        virtualenv={{ django__virtualenv_dir }}
-      become: yes
-      become_user: "{{ site_user }}"
-      ignore_errors: yes
+    # - name: Run Django ./manage.py collectstatic
+    #   django_manage: >
+    #     command=collectstatic
+    #     app_path={{ django__app_dir }}
+    #     settings={{ django__settings }}
+    #     virtualenv={{ django__virtualenv_dir }}
+    #   become: yes
+    #   become_user: "{{ site_user }}"
+    #   ignore_errors: yes
 
   rescue:
     - debug: msg="environment checkout failed"
