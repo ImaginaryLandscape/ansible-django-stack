@@ -15,7 +15,7 @@ DB_DUMP_FILE = "/local/path/to/your/db-dump.sql"
 MEDIA_ZIP = "/local/path/to/your/media.zip"
 PYTHON_VERSION = "python3.5"
 SITE_USER_SSH_PRIVATE_KEY_SRC = "path/to/your/key"
-SYNCED_FOLDER_SRC = "/home/marat/Workspace/synced-folder/ansible/#{SITE_NAME}"
+SYNCED_FOLDER_SRC = "/local/path/to/your/synced-folder/#{SITE_NAME}"
 SYNCED_FOLDER_DEST = "/srv/sites/#{SITE_NAME}/proj/#{SITE_NAME}"
 
 

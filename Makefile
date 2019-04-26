@@ -27,3 +27,7 @@ suspend:
 destroy:
 	vagrant	halt ${SITE_NAME}
 	vagrant destroy -f ${SITE_NAME}
+
+copy:
+	cp -p example.Vagrantfile Vagrantfile
+	cp -p extra-vars.example.yml extra-vars.yml
