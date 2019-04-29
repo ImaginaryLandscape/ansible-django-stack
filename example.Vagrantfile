@@ -42,6 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define SITE_NAME, autostart: false do |box|
     box.vm.box = UBUNTU_VSERION
+    box.vm.usable_port_range = 8880..8999
     box.vm.network "forwarded_port", guest: 80, host: HOST_HTTP_PORT, auto_correct: true
     box.vm.network "forwarded_port", guest: 443, host: HOST_HTTPS_PORT, auto_correct: true
     box.vm.network "forwarded_port", guest: 8000, host: HOST_EXTRA_PORT, auto_correct: true
