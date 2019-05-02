@@ -1,22 +1,21 @@
-# vagrant up xenial
-# vagrant up trusty
-
 VAGRANTFILE_API_VERSION = "2"
+HOME_DIR = "/home/dir"
+WORKSPACE_DIR = "#{HOME_DIR}/Workspace"
 
-#16.04
 UBUNTU_VSERION = "ubuntu/xenial64" # ubuntu/trusty64 | ubuntu/bionic64 | centos/7
 SITE_NAME = "site_name"
 GITHUB_REPO = "github/repo"
-GITHUB_BRANCH = "github/branch"
+GITHUB_BRANCH = "github/branch-or-commit"
 HOST_HTTP_PORT = 8880
 HOST_HTTPS_PORT = 4443
 HOST_EXTRA_PORT = 18000
-DB_DUMP_FILE = "/local/path/to/your/db-dump.sql"
-MEDIA_ZIP = "/local/path/to/your/media.zip"
-PYTHON_VERSION = "python3.5"
-SITE_USER_SSH_PRIVATE_KEY_SRC = "path/to/your/key"
-SYNCED_FOLDER_SRC = "/local/path/to/your/synced-folder/#{SITE_NAME}"
-SYNCED_FOLDER_DEST = "/srv/sites/#{SITE_NAME}/proj/#{SITE_NAME}"
+DB_DUMP_FILE = "#{WORKSPACE_DIR}/#{SITE_NAME}/dump.sql"               # standard
+MEDIA_ZIP = "#{WORKSPACE_DIR}/#{SITE_NAME}/media.zip"                 # standard
+PYTHON_VERSION = "python3.5"                                          # python2.7
+SITE_USER_SSH_PRIVATE_KEY_SRC = "#{HOME_DIR}/.ssh/id_rsa"
+SYNCED_FOLDER_SRC = "#{WORKSPACE_DIR}/#{SITE_NAME}/#{SITE_NAME}"      # standard
+SYNCED_FOLDER_DEST = "/srv/sites/#{SITE_NAME}/proj/#{SITE_NAME}"      # standard
+
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -57,6 +56,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.extra_vars = {
       #    "user_to_add" => "testb"
 
+          # Set project parameters:
            "install_nginx" => true,
            "install_letsencrypt" => true,
            "install_ntp" => true,
@@ -67,8 +67,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
            "install_mysql" => false,
            "install_redis" => false,
            "install_elasticsearch"=> false,
+           "install_postfix" => false,
+           "install_nrpe"=> false,
 
-           # Set project parameters:
+          # Set project parameters:
            "site_name" => SITE_NAME,
            "git_repo" => GITHUB_REPO,
            "git_branch" => GITHUB_BRANCH,
@@ -77,17 +79,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
            "db_dump_file" => DB_DUMP_FILE,
            "media_content" => MEDIA_ZIP,
 
-           # Ubuntu 16.04 settings (DONT CHANGE - Needed for Ansible)
-           #"ansible_python_interpreter" => "/usr/bin/python2.7",
+          # Ubuntu 16.04 settings (DONT CHANGE - Needed for Ansible)
+          #"ansible_python_interpreter" => "/usr/bin/python2.7",
            "ansible_python_interpreter" => "/usr/bin/python3",  # ansible 2.4+ with python3 support
       }
       ansible.become = true
       ansible.limit = "all"
     end
-    # Ability to edit from the local machine with an IDE
+    # Ability to edit from the local machine with an IDE:
     box.vm.synced_folder SYNCED_FOLDER_SRC, SYNCED_FOLDER_DEST,
       disabled: false,
-      # The ID corresponding to SITE_NAME user (should be correct)
+      # The ID corresponding to SITE_NAME user (should be correct, otherwise check SITE id groupid)
       owner: "1002",
       group: "1003"
   end

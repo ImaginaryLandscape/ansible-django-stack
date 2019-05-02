@@ -10,3 +10,6 @@ mysql__my_cnf_path: "/etc/mysql/"
 mysql__socket_dir: "/var/run/mysqld/mysqld.sock"
 mysql__log_dir: "/var/log/mysql/error.log"
 mysql__data_dir: "/var/lib/mysql"
+
+mysql__db_dump_file_src: "{{ db_dump_file }}"
+mysql__db_dump_file_dest: "/srv/dump.sql"

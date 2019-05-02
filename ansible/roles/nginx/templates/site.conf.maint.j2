@@ -8,7 +8,11 @@ ssl_session_tickets off;
 
 
 upstream app_server {
-    server unix:{{ site_var_run_dir }}django.socket;
+  {% if new_structure %}
+     server unix:{{ site_run_dir }}django.socket;
+  {% else %}
+     server unix:{{ site_var_run_dir }}django.socket;
+  {% endif %}
 }
 
 server {

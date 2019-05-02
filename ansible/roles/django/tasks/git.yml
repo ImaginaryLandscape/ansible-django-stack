@@ -50,6 +50,7 @@
         dest={{ django__settings_file }}
         owner={{ django__site_user }}
         group={{ django__shared_group }}
+      ignore_errors: yes
 
     # - name: Run Django ./manage.py makemigrations
     #   django_manage: >

@@ -28,22 +28,43 @@
     owner={{ sites__site_user }}
     group={{ sites__shared_group }}
     mode=2775
+  when: not new_structure
 
-- name: Creates  var log directory
-  file:
-    path={{ sites__site_var_run_dir }}
-    state=directory
-    owner={{ sites__site_user }}
-    group={{ sites__shared_group }}
-    mode=2775
-
-- name: Creates var run directory
+- name: Creates var log directory
   file:
     path={{ sites__site_var_log_dir }}
     state=directory
     owner={{ sites__site_user }}
     group={{ sites__shared_group }}
     mode=2775
+  when: not new_structure
+
+- name: Creates var run directory
+  file:
+    path={{ sites__site_var_run_dir }}
+    state=directory
+    owner={{ sites__site_user }}
+    group={{ sites__shared_group }}
+    mode=2775
+  when: not new_structure
+
+- name: Creates log directory
+  file:
+    path={{ sites__site_log_dir }}
+    state=directory
+    owner={{ sites__site_user }}
+    group={{ sites__shared_group }}
+    mode=2775
+  when: new_structure
+
+- name: Creates run directory
+  file:
+    path={{ sites__site_run_dir }}
+    state=directory
+    owner={{ sites__site_user }}
+    group={{ sites__shared_group }}
+    mode=2775
+  when: new_structure
 
 
 
