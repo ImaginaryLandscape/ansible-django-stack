@@ -60,6 +60,7 @@ site_var_log_dir: "{{site_var_dir}}log/"
 site_var_run_dir: "{{site_var_dir}}run/"
 
 ## new
+new_structure: true
 site_log_dir: "{{site_dir}}log/"
 site_run_dir: "{{site_dir}}run/"
 

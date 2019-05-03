@@ -16,7 +16,11 @@ master = true
 ; maximum number of worker processes
 processes = {{django__uwsgi_processes}}
 ; the socket (use the full path to be safe)
-socket = %(base_dir)/var/run/django.socket
+  {% if new_structure %}
+     socket = {{ site_run_dir }}django.socket
+  {% else %}
+     socket = {{ site_var_run_dir }}django.socket
+  {% endif %}
 ; ... appropriate permissions - may be needed
 chmod-socket = 666
 ; clear environment on exit
@@ -24,13 +28,22 @@ vacuum = true
 ; set this environment variable
 env = DJANGO_SETTINGS_MODULE={{django__site_name}}.settings
 ; create a pidfile
-safe-pidfile = %(base_dir)/var/run/django.pid
+  {% if new_structure %}
+     safe-pidfile = {{ site_run_dir }}django.pid
+  {% else %}
+     safe-pidfile = {{ site_var_run_dir }}django.pid
+  {% endif %}
 ; respawn processes taking more than {{django__uwsgi_harakiri}} seconds
 harakiri = {{django__uwsgi_harakiri}}
 ; respawn processes after serving {{django__uwsgi_max_requests}} requests
 max-requests = {{django__uwsgi_max_requests}}
 ; logging 
 logto = %(base_dir)/var/log/django-uwsgi.log
+  {% if new_structure %}
+     logto = {{ site_log_dir }}django-uwsgi.log
+  {% else %}
+     logto = {{ site_var_log_dir }}django-uwsgi.log
+  {% endif %}
 logdate
 
 ;http-socket = localhost:9000

@@ -30,3 +30,21 @@
     password={{mysql__db_password}}
     priv=*.*:ALL
     state=present
+
+- name: Copy DB dump file
+  copy:
+    src: "{{ mysql__db_dump_file_src }}"
+    dest: "{{ mysql__db_dump_file_dest }}"
+
+- name: Restore DB dump file
+  become: true
+  become_user: "{{ mysql__db_user }}"
+  mysql_db:
+    login_host={{ mysql__bind_address }}
+    login_port={{ mysql__port }}
+    login_user={{ mysql__db_user }}
+    login_password={{ mysql__db_password }}
+    name={{ mysql__db_user }}
+    state=import
+    target={{ mysql__db_dump_file_dest }}
+  ignore_errors: yes

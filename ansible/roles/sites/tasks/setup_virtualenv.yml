@@ -5,13 +5,8 @@
 
 - debug: msg="Creating Virtualenv {{ sites__virtualenv_dir_version }} using python {{ sites__python_version }}"
 
-# - name: Create the virtualenv
-#   command: virtualenv {{ sites__virtualenv_dir_version }} --no-site-packages -p {{ sites__python_version }}
-#            creates={{ sites__virtualenv_dir_version }}/bin/activate
-#   when: virtualenv_dir_exists.stat.islnk is not defined
-
 - name: Create the virtualenv
-  command: virtualenv {{ sites__virtualenv_dir_version }} --no-site-packages
+  command: virtualenv {{ sites__virtualenv_dir_version }} --no-site-packages -p {{ sites__python_version }}
            creates={{ sites__virtualenv_dir_version }}/bin/activate
   when: virtualenv_dir_exists.stat.islnk is not defined
 
