@@ -1,32 +1,32 @@
 
 SHELL=bash
 
-# make up SITE_NAME=foo
+# make up SITE=foo
 
 new:
-	vagrant	halt ${SITE_NAME}
-	vagrant destroy -f ${SITE_NAME}
-	vagrant up ${SITE_NAME}
-	vagrant ssh ${SITE_NAME}
+	vagrant	halt ${SITE}
+	vagrant destroy -f ${SITE}
+	vagrant up ${SITE}
+	vagrant ssh ${SITE}
 
 up:
-	vagrant up ${SITE_NAME}
+	vagrant up ${SITE}
 
 provision:
-	vagrant provision ${SITE_NAME}
+	vagrant provision ${SITE}
 
 ssh:
-	vagrant ssh ${SITE_NAME}
+	vagrant ssh ${SITE}
 
 halt:
-	vagrant	halt ${SITE_NAME}
+	vagrant	halt ${SITE}
 
 suspend:
-	vagrant	suspend ${SITE_NAME}
+	vagrant	suspend ${SITE}
 
 destroy:
-	vagrant	halt ${SITE_NAME}
-	vagrant destroy -f ${SITE_NAME}
+	vagrant	halt ${SITE}
+	vagrant destroy -f ${SITE}
 
 copy:
 	cp -p example.Vagrantfile Vagrantfile
