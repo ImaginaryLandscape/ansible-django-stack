@@ -11,7 +11,7 @@ HOST_HTTPS_PORT = 4443
 HOST_EXTRA_PORT = 18000
 DB_DUMP_FILE = "#{WORKSPACE_DIR}/#{SITE_NAME}/dump.sql"               # standard
 MEDIA_ZIP = "#{WORKSPACE_DIR}/#{SITE_NAME}/media.zip"                 # standard
-PYTHON_VERSION = "python3.5"                                          # python2.7
+PYTHON_VERSION = "python3.5"                                          # python2.7 | python3.5
 SITE_USER_SSH_PRIVATE_KEY_SRC = "#{HOME_DIR}/.ssh/id_rsa"
 SYNCED_FOLDER_SRC = "#{WORKSPACE_DIR}/#{SITE_NAME}/#{SITE_NAME}"      # standard
 SYNCED_FOLDER_DEST = "/srv/sites/#{SITE_NAME}/proj/#{SITE_NAME}"      # standard
@@ -60,15 +60,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
            "install_nginx" => true,
            "install_letsencrypt" => true,
            "install_ntp" => true,
+           "install_nrpe" => false,
            "install_unattended_updates" => true,
            "install_docker" => false,
            "install_postgis" => false,
+           "install_postfix" => false,
            "install_postgres" => true,
            "install_mysql" => false,
            "install_redis" => false,
            "install_elasticsearch"=> false,
-           "install_postfix" => false,
-           "install_nrpe"=> false,
 
           # Set project parameters:
            "site_name" => SITE_NAME,
