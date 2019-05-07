@@ -16,7 +16,7 @@ SITE_USER_SSH_PRIVATE_KEY_SRC = "#{HOME_DIR}/.ssh/id_rsa"
 SYNCED_FOLDER_SRC = "#{WORKSPACE_DIR}/#{SITE_NAME}/#{SITE_NAME}"      # standard
 SYNCED_FOLDER_DEST = "/srv/sites/#{SITE_NAME}/proj/#{SITE_NAME}"      # standard
 NEW_STRUC = false
-
+APP_RUNNER = "uwsgi" # uwsgi | gunicorn
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -79,6 +79,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
            "db_dump_file" => DB_DUMP_FILE,
            "media_content" => MEDIA_ZIP,
            "new_structure" => NEW_STRUC,
+           "application_runner" => APP_RUNNER,
 
           # Ubuntu 16.04 settings (DONT CHANGE - Needed for Ansible)
           #"ansible_python_interpreter" => "/usr/bin/python2.7",
