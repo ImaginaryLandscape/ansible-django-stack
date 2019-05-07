@@ -9,6 +9,7 @@ GITHUB_BRANCH = "github/branch-or-commit"
 HOST_HTTP_PORT = 8880
 HOST_HTTPS_PORT = 4443
 HOST_EXTRA_PORT = 18000
+DB_PASSWORD = SITE_NAME
 DB_DUMP_FILE = "#{WORKSPACE_DIR}/#{SITE_NAME}/dump.sql"               # standard
 MEDIA_ZIP = "#{WORKSPACE_DIR}/#{SITE_NAME}/media.zip"                 # standard
 PYTHON_VERSION = "python3.5"                                          # python2.7 | python3.5
@@ -76,6 +77,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
            "git_branch" => GITHUB_BRANCH,
            "python_version" => PYTHON_VERSION,
            "site_user_ssh_private_key_src" => SITE_USER_SSH_PRIVATE_KEY_SRC,
+           "db_password" => DB_PASSWORD,
            "db_dump_file" => DB_DUMP_FILE,
            "media_content" => MEDIA_ZIP,
            "new_structure" => NEW_STRUC,
