@@ -1,8 +1,8 @@
 VAGRANTFILE_API_VERSION = "2"
-HOME_DIR = "/home/dir"
+HOME_DIR = "/home/username"
 WORKSPACE_DIR = "#{HOME_DIR}/Workspace"
 
-UBUNTU_VSERION = "ubuntu/xenial64" # ubuntu/trusty64 | ubuntu/bionic64 | centos/7
+UBUNTU_VSERION = "ubuntu/xenial64" # ubuntu/trusty64 | ubuntu/xenial64 | ubuntu/bionic64 | centos/7
 SITE_NAME = "site_name"
 GITHUB_REPO = "github/repo"
 GITHUB_BRANCH = "github/branch-or-commit"
@@ -10,8 +10,8 @@ HOST_HTTP_PORT = 8880
 HOST_HTTPS_PORT = 4443
 HOST_EXTRA_PORT = 18000
 DB_PASSWORD = SITE_NAME
-DB_DUMP_FILE = "#{WORKSPACE_DIR}/#{SITE_NAME}/dump.sql"               # standard
-MEDIA_ZIP = "#{WORKSPACE_DIR}/#{SITE_NAME}/media.zip"                 # standard
+DB_DUMP_FILE = "#{WORKSPACE_DIR}/#{SITE_NAME}/dump.sql"               # personal
+MEDIA_ZIP = "#{WORKSPACE_DIR}/#{SITE_NAME}/media.zip"                 # personal
 PYTHON_VERSION = "python3.5"                                          # python2.7 | python3.5
 SITE_USER_SSH_PRIVATE_KEY_SRC = "#{HOME_DIR}/.ssh/id_rsa"
 SYNCED_FOLDER_SRC = "#{WORKSPACE_DIR}/#{SITE_NAME}/#{SITE_NAME}"      # standard
