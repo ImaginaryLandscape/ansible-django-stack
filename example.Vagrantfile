@@ -1,6 +1,6 @@
 VAGRANTFILE_API_VERSION = "2"
 HOME_DIR = "/home/username"
-WORKSPACE_DIR = "#{HOME_DIR}/Workspace"
+WORKSPACE_DIR = "#{HOME_DIR}/Workspace"                               # personal
 
 UBUNTU_VSERION = "ubuntu/xenial64" # ubuntu/trusty64 | ubuntu/xenial64 | ubuntu/bionic64 | centos/7
 SITE_NAME = "site_name"
@@ -14,10 +14,10 @@ DB_DUMP_FILE = "#{WORKSPACE_DIR}/#{SITE_NAME}/dump.sql"               # personal
 MEDIA_ZIP = "#{WORKSPACE_DIR}/#{SITE_NAME}/media.zip"                 # personal
 PYTHON_VERSION = "python3.5"                                          # python2.7 | python3.5
 SITE_USER_SSH_PRIVATE_KEY_SRC = "#{HOME_DIR}/.ssh/id_rsa"
-SYNCED_FOLDER_SRC = "#{WORKSPACE_DIR}/#{SITE_NAME}/#{SITE_NAME}"      # standard
+SYNCED_FOLDER_SRC = "#{WORKSPACE_DIR}/#{SITE_NAME}/#{SITE_NAME}"      # personal
 SYNCED_FOLDER_DEST = "/srv/sites/#{SITE_NAME}/proj/#{SITE_NAME}"      # standard
-NEW_STRUC = false
-APP_RUNNER = "uwsgi" # uwsgi | gunicorn
+NEW_STRUC = false     # true: without var/ ; flase: with var/log/ var/run/
+APP_RUNNER = "uwsgi"  # uwsgi | gunicorn
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -84,8 +84,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
            "application_runner" => APP_RUNNER,
 
           # Ubuntu 16.04 settings (DONT CHANGE - Needed for Ansible)
-          #"ansible_python_interpreter" => "/usr/bin/python2.7",
-           "ansible_python_interpreter" => "/usr/bin/python3",  # ansible 2.4+ with python3 support
+          "ansible_python_interpreter" => "/usr/bin/python2.7",
+          #  "ansible_python_interpreter" => "/usr/bin/python3",  # ansible 2.4+ with python3 support
       }
       ansible.become = true
       ansible.limit = "all"
