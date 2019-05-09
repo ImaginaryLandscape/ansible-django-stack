@@ -1,6 +1,6 @@
 VAGRANTFILE_API_VERSION = "2"
 HOME_DIR = "/home/username"
-WORKSPACE_DIR = "#{HOME_DIR}/Workspace"                               # personal
+WORKSPACE_DIR = "#{HOME_DIR}/Workspace/maintenance"                   # personal
 
 UBUNTU_VSERION = "ubuntu/xenial64" # ubuntu/trusty64 | ubuntu/xenial64 | ubuntu/bionic64 | centos/7
 SITE_NAME = "site_name"
@@ -42,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define SITE_NAME, autostart: false do |box|
     box.vm.box = UBUNTU_VSERION
-    box.vm.usable_port_range = 8880..8999
+    box.vm.usable_port_range = 8820..8999
     box.vm.network "forwarded_port", guest: 80, host: HOST_HTTP_PORT, auto_correct: true
     box.vm.network "forwarded_port", guest: 443, host: HOST_HTTPS_PORT, auto_correct: true
     box.vm.network "forwarded_port", guest: 8000, host: HOST_EXTRA_PORT, auto_correct: true
