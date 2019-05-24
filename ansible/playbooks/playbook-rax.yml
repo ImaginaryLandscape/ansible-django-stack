@@ -1,0 +1,117 @@
+---
+- name: Base states + Create a Rackspace Cloud Server + Provison
+  hosts: localhost
+  gather_facts: False
+  # user: root 
+
+
+  vars:
+    - update_apt_cache: yes
+    - rax_name: ansible-rax-test
+    - rax_flavor: 2
+    - rax_image: 74e83199-e007-4a5a-a2b4-019afd6f0917 # 14.04
+    - rax_count: 1
+    - rax_exact_count: false
+    - rax_group: web
+    - rax_target_groups_hosts: "{{ rax_name }}-hosts"
+    - rax_region: IAD
+    - rax_wait: true
+    - rax_wait_timeout: 900
+    #  - rax_creds_file: creds.ini
+    # - rax_username: "{{ lookup('ini', 'username  section=raxaccount file=creds.ini') }}"
+    # - rax_api_key: "{{ lookup('ini', 'api_key section=raxaccount file=creds.ini') }}"
+    - rax_username: "{{ username }}"
+    - rax_api_key: "{{ api_key }}"
+    - rax_network:
+          - public
+          - private
+          # - my-net
+    - rax_files:
+        /root/.ssh/authorized_keys: ~/.ssh/id_ed25519.pub
+    - rax_private_key: ~/.ssh/id_ed25519
+    # - rax_account: raxaccount
+
+
+  tasks:
+    # - debug: msg="username is {{ lookup('ini', 'username  section=iscape file=test-cred.ini') }}"
+    - name: Build a set of instances
+      rax:
+          # credentials: "{{ rax_creds_file }}"
+          username: "{{ rax_username }}"
+          api_key: "{{ rax_api_key }}"
+          name: "{{ rax_name }}"
+          flavor: "{{ rax_flavor }}"
+          image: "{{ rax_image }}"
+          region: "{{ rax_region }}"
+          count: "{{ rax_count }}"
+          exact_count: "{{ rax_exact_count }}"
+          group: "{{ rax_group }}"
+          networks: "{{ rax_network }}"
+          files: "{{ rax_files }}"
+          wait: "{{ rax_wait }}"
+          wait_timeout: "{{ rax_wait_timeout }}"
+          state: present
+      register: rax
+      delegate_to: localhost
+
+    - name: Add the instances created (by public IP) to the group 'target_groups_hosts'
+      add_host:
+          hostname: "{{ item.name }}"
+          ansible_host: "{{ item.rax_accessipv4 }}"
+          # ansible_ssh_pass: "{{ item.rax_adminpass }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: "{{ rax_private_key }}"
+          groups: "{{ rax_target_groups_hosts }}"
+          # group: "{{ rax_group }}"
+      loop: "{{ rax.success }}"
+      when: rax.action == 'create'
+
+    - name: Add the new instance host to known hosts
+      connection: local
+      shell: "ssh-keyscan -H {{ item.rax_accessipv4 }} >> ~/.ssh/known_hosts"
+      loop: "{{ rax.success }}"
+      when: rax.action == 'create'
+
+- name: Wait for port 22 to be ready
+  vars:
+  - rax_name: ansible-rax-test
+  - rax_group: web
+  - rax_target_groups_hosts: "{{ rax_name }}-hosts"
+  hosts: "{{ rax_target_groups_hosts }}"
+  gather_facts: False
+  tasks:
+    - local_action: wait_for port=22 host="{{ ansible_ssh_host }}"  search_regex=OpenSSH delay=30
+
+
+
+- name: Configuration play | Provision a set of instances
+  vars:
+    - update_apt_cache: yes
+    - rax_name: ansible-rax-test
+    - rax_group: web
+    - rax_target_groups_hosts: "{{ rax_name }}-hosts"
+  hosts: "{{ rax_target_groups_hosts }}"
+  gather_facts: True
+  user: root
+  roles:
+    - role: base
+    - role: unattended
+    - role: timezone
+    - role: ntp
+    - role: supervisor
+    - role: nginx
+    - role: letsencrypt
+    - role: postfix
+    - role: postgres
+    - role: postgis
+    - role: mysql
+    - role: redis
+    #- role: elasticsearch
+    - role: django
+    - role: docker
+    - role: nrpe
+
+
+
+
+

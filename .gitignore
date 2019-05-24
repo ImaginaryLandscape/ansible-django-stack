@@ -10,3 +10,15 @@ Vagrantfile
 *.Vagrantfile
 !example.Vagrantfile
 *.env
+
+rack/
+rackenv/
+rack
+settings.json
+.env
+creds.ini
+*.retry
+json.json
+.raxrc
+servers-description.log
+compare.md

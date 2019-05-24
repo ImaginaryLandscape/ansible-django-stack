@@ -1,0 +1,6 @@
+pyrax
+rackspace-novaclient
+paramiko
+ansible
+rackspace-monitoring-cli
+supernova

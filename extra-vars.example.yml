@@ -6,10 +6,20 @@ site_name: "example"
 db_password: "94839b8d6a292863e64f9113747764c2c744152a4960f05c"
 # Location of the git repo to be cloned into "<site_name>/proj"
 git_repo: "git@github.com:MyAccount/my-repo.git"
-
+# The branch to checkout
+git_branch: "master"
 # If the git_repo is private, specify the path to the ssh private key
 # needed to download that repo.
-#site_user_ssh_private_key_src: "/home/<your-username>/.ssh/id_rsa"
+site_user_ssh_private_key_src: "/home/<your-username>/.ssh/id_rsa"
+# The database dump file the app will use
+db_dump_file: "/path/to/your/dump/file"
+# The media folder the app will use
+media_content: "media/fodler"
+new_structure: true
+
+# RACKSPACE
+rax_username: account
+rax_api_key: api_key
 
 # Indicates what version of python to setup the app with. This must be a
 # version that's available on the system.
