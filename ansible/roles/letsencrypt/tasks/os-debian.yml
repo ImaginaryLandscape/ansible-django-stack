@@ -14,7 +14,7 @@
       state: present
       update_cache: yes
 
-- name: Ensure Cretbot packages are installed.
+- name: Ensure Certbot packages are installed.
   apt: name={{ package_to_install }} update_cache={{ update_apt_cache }} state=latest
   with_items:
     - certbot
