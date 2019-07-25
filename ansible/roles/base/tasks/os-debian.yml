@@ -49,6 +49,7 @@
     - lsof
     - iptables-persistent
     - unzip
+    - gettext
 
 
 - name: Install Python System-level packages

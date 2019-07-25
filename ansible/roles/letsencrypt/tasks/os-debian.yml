@@ -20,3 +20,5 @@
     state: latest
     name:
     - certbot
+    - python-certbot-nginx
+
