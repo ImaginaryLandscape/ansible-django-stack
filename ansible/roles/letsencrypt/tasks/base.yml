@@ -27,4 +27,4 @@
     dest: "{{ letsencrypt__locations_nginx_config }}"
     regexp: "^\\s*letsencrypt.conf;"
     line: "include {{ letsencrypt__letsencrypt_nginx_config }};"
-  notify: "restart nginx"
+#   notify: "restart nginx"

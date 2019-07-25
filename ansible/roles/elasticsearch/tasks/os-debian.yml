@@ -1,11 +1,10 @@
 ---
 
 - name: Install Java (openjdk JRE)
-  apt: name={{ package_to_install }} update_cache={{ update_apt_cache }}
-  with_items:
+  apt:
+    update_cache: "{{ update_apt_cache }}"
+    name:
     - default-jre
-  loop_control:
-    loop_var: package_to_install
   tags:
     - packages
     - debian-base

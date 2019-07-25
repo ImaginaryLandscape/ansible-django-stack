@@ -1,14 +1,15 @@
 ---
 
 - name: Install need system libraries and tools
-  apt: name={{ package_to_install }} update_cache={{ update_apt_cache }} state=latest
-  with_items:
+  apt:
+    name:
     - bash
     - build-essential
     - aptitude
     - openssl
     - rng-tools
     - libssl-dev
+    - libxslt1-dev 
     - libssl-doc
     - libxml2-dev
     - libjpeg8
@@ -18,20 +19,25 @@
     - zlib1g-dev
     - libpq-dev
     - libsqlite3-dev
-  loop_control:
-      loop_var: package_to_install
+    - node-less
+    state: latest
+    update_cache: yes
 
 - name: Install jpeg8
-  apt: name={{ package_to_install }} update_cache={{ update_apt_cache }} force=yes state=present
-  with_items:
-    - libjpeg-turbo8-dev
-  loop_control:
-    loop_var: package_to_install
+  apt:
+    name:
+      - libjpeg-turbo8-dev
+    update_cache: "{{ update_apt_cache }}"
+    force: yes
+    state: present
   ignore_errors: yes
 
 - name: Install base packages
-  apt: name={{ package_to_install }} update_cache={{ update_apt_cache }} force=yes state=present
-  with_items:
+  apt:
+    update_cache: "{{ update_apt_cache }}"
+    force: yes
+    state: present
+    name:
     - curl
     - psmisc
     - htop
@@ -43,12 +49,14 @@
     - lsof
     - iptables-persistent
     - unzip
-  loop_control:
-    loop_var: package_to_install
+
 
 - name: Install Python System-level packages
-  apt: name={{ package_to_install }} update_cache={{ update_apt_cache }} force=yes state=present
-  with_items:
+  apt:
+    update_cache: "{{ update_apt_cache }}"
+    force: yes
+    state: present
+    name:
     - python-dev
     - python3-dev
     - python-pip
@@ -56,5 +64,4 @@
     - python-pycurl
     - python-virtualenv
     - python-setuptools
-  loop_control:
-    loop_var: package_to_install
+

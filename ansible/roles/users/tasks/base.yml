@@ -7,7 +7,7 @@
 - name: Create new site user
   user:
     name="{{ users__site_user }}"
-    password="{{users__site_user}}"
+    password="{{users__site_user | password_hash('sha512') }}"
     groups="{{ users__sudo_group }}, {{ users__shared_group }}"
     shell=/bin/bash
     home={{ users__site_user_home }}
@@ -44,3 +44,4 @@
         uid="{{ item.uid|default(omit) }}"
         createhome="{{'yes' if users__create_homedirs else 'no' }}"
   with_items: "{{ users }}"
+  no_log: true

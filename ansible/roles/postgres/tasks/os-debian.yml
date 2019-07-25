@@ -1,14 +1,14 @@
 ---
 
 - name: Install Postgresql
-  apt: name={{ package_to_install }} update_cache={{ update_apt_cache }} state=latest
-  with_items:
+  apt:
+    update_cache: "{{ update_apt_cache }}"
+    state: latest
+    name:
     - postgresql
     - postgresql-contrib
     - python-psycopg2
     - python3-psycopg2
-  loop_control:
-    loop_var: package_to_install
   tags:
     - packages
     - debian-base
