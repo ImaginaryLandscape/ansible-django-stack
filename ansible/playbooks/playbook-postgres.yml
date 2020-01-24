@@ -1,8 +1,10 @@
 ---
 - name: Base states
   hosts: all
+  become: yes  
   vars:
     - update_apt_cache: yes
     - install_postgres: True
   roles:
+    # - role: base
     - role: postgres

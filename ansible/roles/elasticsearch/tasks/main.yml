@@ -6,7 +6,3 @@
   when: install_elasticsearch|default(True)
   tags:
     - elasticsearch
-
-- service:
-    name: elasticsearch
-    enabled: yes

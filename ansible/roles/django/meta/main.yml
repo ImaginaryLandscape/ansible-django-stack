@@ -1,5 +1,0 @@
----
-
-dependencies:
- - role: sites
- - role: supervisor

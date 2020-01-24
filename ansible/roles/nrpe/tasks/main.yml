@@ -1,5 +1,6 @@
 ---
-- debug: msg="Enabled {{ install_nrpe }}"
+- debug: 
+    msg: "Enabled {{ install_nrpe }}"
 
 - name: enable/disable nrpe Ansible install
   include: base.yml

@@ -1,6 +1,0 @@
----
-- name: restart nginx
-  include: restart_nginx.yml
-
-- name: reload nginx
-  include: reload_nginx.yml

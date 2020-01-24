@@ -1,0 +1,30 @@
+---
+- name: Base
+  hosts: all
+  become: yes
+  vars:
+    - update_apt_cache: yes
+    - install_docker: True
+  roles:
+    - role: base
+    - role: docker
+    # - role: elasticsearch
+    
+    
+    # - role: letsencrypt
+    # - role: mysql
+    # - role: nginx
+    # - role: nrpe
+    # - role: ntp
+    
+    
+    ## - role: postgres
+    ## - role: postfix
+    ## - role: postgis
+    
+    # - role: supervisor
+    
+    ## - role: timezone
+    ## - role: unattended
+
+    ## - role: netdata

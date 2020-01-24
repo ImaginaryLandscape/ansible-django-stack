@@ -6,7 +6,7 @@ postgres__db_user: "{{ db_user }}"
 postgres__db_password: "{{ db_password }}"
 postgres__db_name: "{{ db_name }}"
 postgres__service: "postgresql"
-postgres__version: "10"
+postgres__version: "{{ postgres_version }}"
 postgres__postgresql_conf: '/etc/postgresql/{{postgres__version}}/main/postgresql.conf'
 postgres__data_directory: '/var/lib/postgresql/{{postgres__version}}/main'
 postgres__hba_file: '/etc/postgresql/{{postgres__version}}/main/pg_hba.conf'
@@ -24,3 +24,5 @@ postgres__log_statement: 'none'
 
 postgres__db_dump_file_src: "{{ db_dump_file }}"
 postgres__db_dump_file_dest: "/srv/dump.sql"
+
+# postgres__postgres_version: "{{ postgres_version }}"

@@ -10,11 +10,15 @@
     - debian-base
 
 - name: Add Elasticsearch repository key
-  apt_key: url="{{ elasticsearch__apt_key }}" state=present
+  apt_key: 
+    url: "{{ elasticsearch__apt_key }}"
+    state: present
   when: elasticsearch__apt_key
 
 - name: Add elasticsearch repository
-  apt_repository: repo={{ repo_to_install.repo }} state={{ repo_to_install.state}}
+  apt_repository: 
+    repo: "{{ repo_to_install.repo }}"
+    state: "{{ repo_to_install.state}}"
   with_items:
     - { repo: "{{ elasticsearch__apt_url }}", state: "present" }
   loop_control:

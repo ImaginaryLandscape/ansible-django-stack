@@ -1,14 +1,32 @@
 ---
 
+- name: Add an Apt signing key, uses whichever key is at the URL
+  apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
+- name: Add apt source list postgresql "{{ postgres__version }}"
+  apt_repository:
+    repo: "deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main {{ postgres__version }}"
+    state: present
+    filename: postgresql
+    
+- name: Update apt
+  apt:
+    update_cache: "{{ update_apt_cache }}"
+
+
 - name: Install Postgresql
   apt:
     update_cache: "{{ update_apt_cache }}"
-    state: latest
+    state: present
     name:
-    - postgresql
-    - postgresql-contrib
+    - "postgresql-{{ postgres__version }}"
+    - "postgresql-contrib-{{ postgres__version }}"
     - python-psycopg2
     - python3-psycopg2
   tags:
     - packages
     - debian-base
+
+

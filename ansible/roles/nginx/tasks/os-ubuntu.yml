@@ -1,16 +1,18 @@
 ---
 
 - name: Add Nginx Repository
-  apt_repository: repo='ppa:{{nginx__ubuntu_nginx_apt_ppa}}' state=present
+  apt_repository:
+    repo: "ppa:{{nginx__ubuntu_nginx_apt_ppa}}"
+    state: present
   tags:
     - packages
     - debian-base
 
 - name: Install Latest Nginx
   apt:
-    pkg=nginx
-    state=latest
-    update_cache={{ update_apt_cache }}
+    name: nginx
+    state: latest
+    update_cache: "{{ update_apt_cache }}"
   tags:
     - packages
     - debian-base

@@ -1,5 +1,4 @@
 ---
-- debug: msg="Enabled {{ install_ntp }}"
 
 - name: enable/disable ntp Ansible install
   include: base.yml
