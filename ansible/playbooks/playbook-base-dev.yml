@@ -7,22 +7,22 @@
     - install_docker: True
   roles:
     - role: base
-    # - role: docker
+    - role: docker
     # - role: elasticsearch
     
     
-    # - role: letsencrypt
+    - role: letsencrypt
     # - role: mysql
-    # - role: nginx
-    # - role: nrpe
-    # - role: ntp
+    - role: nginx
+    - role: nrpe
+    - role: ntp
     
     
     ## - role: postgres
     ## - role: postfix
     ## - role: postgis
     
-    # - role: supervisor
+    - role: supervisor
     
     ## - role: timezone
     ## - role: unattended

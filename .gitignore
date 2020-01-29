@@ -10,3 +10,5 @@ Vagrantfile
 *.Vagrantfile
 !example.Vagrantfile
 *.env
+gems/
+.bindle

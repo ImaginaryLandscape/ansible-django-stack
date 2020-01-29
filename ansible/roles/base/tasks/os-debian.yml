@@ -33,7 +33,7 @@
     state: present
   ignore_errors: yes
 
-- name: Install base packages
+- name: Install tools packages
   apt:
     update_cache: "{{ update_apt_cache }}"
     force: yes
