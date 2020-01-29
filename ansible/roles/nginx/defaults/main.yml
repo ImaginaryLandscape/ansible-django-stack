@@ -6,7 +6,7 @@
 nginx__manage_with_supervisord: False
 nginx__daemon_mode: "{{ 'off' if nginx__manage_with_supervisord else 'on' }}"
 
-nginx__ubuntu_nginx_apt_ppa: "nginx/development"
+nginx__ubuntu_nginx_apt_ppa: "nginx/stable"
 
 nginx__install_facts: True
 nginx__http_port: 80
