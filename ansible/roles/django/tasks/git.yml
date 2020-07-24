@@ -1,35 +1,37 @@
 ---
 - block:
     - name: Checkout git repo (with ssh key)
-      git: repo={{ django__git_repo }}
-         version={{ django__git_branch }}
-         dest={{ django__app_dir }}
-         remote={{ django__remote_name }}
-         accept_hostkey=yes
-         force=yes
-         recursive=no
-         key_file={{ django__site_user_ssh_private_key }}
+      git: 
+        repo: "{{ django__git_repo }}"
+        version: "{{ django__git_branch }}"
+        dest: "{{ django__app_dir }}"
+        remote: "{{ django__remote_name }}"
+        accept_hostkey: yes
+        force: yes
+        recursive: no
+        key_file: "{{ django__site_user_ssh_private_key | django__site_user_ssh_private_key_src }}"
       become: yes
       become_user: "{{ site_user }}"
-      when: not(users__site_user_ssh_private_key_src | trim == '')
+      when: site_user_ssh_private_key_src is not defined
 
     - name: Checkout git repo (without ssh key)
-      git: repo={{ django__git_repo }}
-         version={{ django__git_branch }}
-         dest={{ django__app_dir }}
-         remote={{ django__remote_name }}
-         accept_hostkey=yes
-         force=yes
-         recursive=no
+      git: 
+        repo: "{{ django__git_repo }}"
+        version: "{{ django__git_branch }}"
+        dest: "{{ django__app_dir }}"
+        remote: "{{ django__remote_name }}"
+        accept_hostkey: yes
+        force: yes
+        recursive: no
       become: yes
       become_user: "{{ site_user }}"
-      when: users__site_user_ssh_private_key_src | trim == ''
+      when: site_user_ssh_private_key_src is defined
 
     - file:
-        path={{ django__app_dir }}
-        state=directory
-        recurse=yes
-        mode=g+w
+        path: "{{ django__app_dir }}"
+        state: directory
+        recurse: yes
+        mode: g+w
 
     - name: Pip install setuptools
       pip: 
