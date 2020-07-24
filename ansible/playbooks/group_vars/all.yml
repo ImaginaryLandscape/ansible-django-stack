@@ -22,7 +22,7 @@ shared_group: "worker"
 db_user: "{{site_name}}"
 
 # The database password that the app will use
-db_password: "94839b8d6a292863e64f9113747764c2c744152a4960f05c"
+db_password: "password"
 
 # The database name that the app will use.
 db_name: "{{site_name}}"

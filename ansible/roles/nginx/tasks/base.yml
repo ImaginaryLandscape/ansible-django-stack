@@ -58,6 +58,7 @@
   unarchive:
     src: "{{ nginx__site_htdocs_media_content_src }}"
     dest: "{{ nginx__site_htdocs_dir }}"
+  ignore_errors: yes
 
 - name: Creates htdocs media directory
   file:
