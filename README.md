@@ -204,3 +204,9 @@ directory structure.
 
     # Show diff of what changed on changed tasks during execution
     ansible-playbook --diff -vvvv  -i ansible/inventory.ini ansible/playbooks/playbook-all.yml
+
+## Addition
+
+### Instructions
+
+- cp inventory.ini inventoy.yml

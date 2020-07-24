@@ -10,3 +10,4 @@ Vagrantfile
 *.Vagrantfile
 !example.Vagrantfile
 *.env
+inventory.yml
