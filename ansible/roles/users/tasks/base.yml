@@ -20,14 +20,14 @@
     owner: "{{ users__site_user }}"
     group: "{{ users__shared_group }}"
 
-- name: Copy Site User SSH Private key_file
-  copy:
-    src: "{{ users__site_user_ssh_private_key_src }}"
-    dest: "{{ users__site_user_ssh_private_key }}"
-    mode: 0600
-    owner: "{{ users__site_user }}"
-    group: "{{ users__shared_group }}"
-  when: not(users__site_user_ssh_private_key_src | trim == '')
+# - name: Copy Site User SSH Private key_file
+#   copy:
+#     src: "{{ users__site_user_ssh_private_key_src }}"
+#     dest: "{{ users__site_user_ssh_private_key }}"
+#     mode: 0600
+#     owner: "{{ users__site_user }}"
+#     group: "{{ users__shared_group }}"
+#   when: not(users__site_user_ssh_private_key_src | trim == '')
 
 - name: Per-user group creation
   group: name="{{ item.username }}" state="present"

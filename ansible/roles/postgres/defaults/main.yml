@@ -6,12 +6,12 @@ postgres__db_user: "{{ db_user }}"
 postgres__db_password: "{{ db_password }}"
 postgres__db_name: "{{ db_name }}"
 postgres__service: "postgresql"
-postgres__version: "11"
-postgres__postgresql_conf: '/etc/postgresql/{{postgres__version}}/main/postgresql.conf'
-postgres__data_directory: '/var/lib/postgresql/{{postgres__version}}/main'
-postgres__hba_file: '/etc/postgresql/{{postgres__version}}/main/pg_hba.conf'
-postgres__ident_file: '/etc/postgresql/{{postgres__version}}/main/pg_ident.conf'
-postgres__external_pid_file: /var/run/postgresql/{{postgres__version}}-main.pid
+# postgres_version: "{{ postgres_version }}"
+postgres__postgresql_conf: '/etc/postgresql/{{postgres_version}}/main/postgresql.conf'
+postgres__data_directory: '/var/lib/postgresql/{{postgres_version}}/main'
+postgres__hba_file: '/etc/postgresql/{{postgres_version}}/main/pg_hba.conf'
+postgres__ident_file: '/etc/postgresql/{{postgres_version}}/main/pg_ident.conf'
+postgres__external_pid_file: /var/run/postgresql/{{postgres_version}}-main.pid
 postgres__port: 5432
 postgres__max_connections: 100
 postgres__shared_buffers: "128MB"

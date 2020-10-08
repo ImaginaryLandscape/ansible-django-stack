@@ -145,11 +145,15 @@
   copy:
     src: "{{ postgres__db_dump_file_src }}"
     dest: "{{ postgres__db_dump_file_dest }}"
+  when: postgres__db_dump_file_src != ""
+  ignore_errors: yes
 
 - name: Restore DB dump file
   become: true
   become_user: postgres
   postgresql_db:
-    name={{ postgres__db_user }}
-    state=restore
-    target={{ postgres__db_dump_file_dest }}
+    name: "{{ postgres__db_user }}"
+    state: restore
+    target: "{{ postgres__db_dump_file_dest }}"
+  when: postgres__db_dump_file_src != ""
+  ignore_errors: yes

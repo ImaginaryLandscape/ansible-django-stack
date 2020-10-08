@@ -31,7 +31,7 @@ db_name: "{{site_name}}"
 db_dump_file: "/path/to/your/dump/file"
 
 # The media folder the app will use
-media_content: "media/fodler"
+media_content: "media/folder"
 
 # The python binary to use in the virtualenv.
 python_version: "python3.5" # "python2.7" or "python3.4" or "python3.5"
@@ -77,7 +77,12 @@ virtualenv_dir: "{{virtualenv_dir_link}}/"
 timezone: "America/Chicago"
 application_runner: "uwsgi" # "uwsgi" or "gunicorn"
 base__create_swap_file: True
+swap_file_size_mb: 512
 ## END SYSTEM SETTINGS ##
+
+## VERSIONS ##
+python_version: "python3.5"   # or "python2.7"
+postgres_version: '10'
 
 ## ROLE FLAGS TO ENABLE/DISABLE ##
 install_ntp: True

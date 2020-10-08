@@ -32,10 +32,11 @@ copy:
 	cp -p example.Vagrantfile Vagrantfile
 	cp -p extra-vars.example.yml extra-vars.yml
 
+tags?=all
 playbook:
 	ansible-playbook \
                 -vvv \
                 -i ansible/inventory.yml \
                 --extra-vars "@extra-vars.yml" \
-                --tags postgres \
+                --tags ${tags} \
                 ansible/playbooks/playbook-all.yml

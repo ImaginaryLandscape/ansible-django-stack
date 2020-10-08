@@ -59,6 +59,7 @@
     src: "{{ nginx__site_htdocs_media_content_src }}"
     dest: "{{ nginx__site_htdocs_dir }}"
   ignore_errors: yes
+  when: nginx__site_htdocs_media_content_src != "media/folder"
 
 - name: Creates htdocs media directory
   file:

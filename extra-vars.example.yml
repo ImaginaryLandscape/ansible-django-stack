@@ -7,6 +7,12 @@ db_password: "94839b8d6a292863e64f9113747764c2c744152a4960f05c"
 # Location of the git repo to be cloned into "<site_name>/proj"
 git_repo: "git@github.com:MyAccount/my-repo.git"
 
+# The database dump file the app will use
+db_dump_file:
+
+# mdeia files
+media_content:
+
 # If the git_repo is private, specify the path to the ssh private key
 # needed to download that repo.
 #site_user_ssh_private_key_src: "/home/<your-username>/.ssh/id_rsa"
@@ -15,7 +21,11 @@ git_repo: "git@github.com:MyAccount/my-repo.git"
 # version that's available on the system.
 timezone: "America/Chicago"
 application_runner: "uwsgi" # "uwsgi" or "gunicorn"
+swap_file_size_mb: 512
+
+## VERSIONS ##
 python_version: "python3.5"   # or "python2.7"
+postgres_version: '10'
 
 # Customize what services to install
 install_ntp: True
