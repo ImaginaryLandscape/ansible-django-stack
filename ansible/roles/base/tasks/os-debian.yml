@@ -52,6 +52,22 @@
     - gettext
 
 
+- name: Install software-properties-common
+  apt:
+    update_cache: "{{ update_apt_cache }}"
+    force: yes
+    state: present
+    name:
+    - software-properties-common
+
+
+# - name: Add deadsnakes PPA to your sources list
+#   apt_repository: 
+#     repo: "deb http://nginx.org/packages/debian/ {{ansible_distribution_release}} nginx"
+#     state: present
+#     update_cache: "{{ update_apt_cache }}"
+
+
 - name: Install Python System-level packages
   apt:
     update_cache: "{{ update_apt_cache }}"
@@ -59,10 +75,11 @@
     state: present
     name:
     - python-dev
-    - python3-dev
     - python-pip
-    - python3-pip
     - python-pycurl
     - python-virtualenv
     - python-setuptools
+    - "{{ base__python_version }}"
+    - python3-dev
+    - python3-pip
 

@@ -2,3 +2,4 @@
 base__create_swap_file: False
 swap__file_path: /swapfile
 swap__file_size_kb: "{{ swap_file_size_mb }}"
+base__python_version: "{{ python_version }}"

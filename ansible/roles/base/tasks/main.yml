@@ -4,6 +4,12 @@
   when: base__create_swap_file
   tags: swap
 
+- name: print
+  debug:
+    msg: "os-{{ ansible_os_family|lower }}.yml"
+  tags:
+    - base
+
 - name: Load OS-Specific Tasks
   include: "{{ item }}"
   with_first_found:
@@ -11,3 +17,5 @@
    - "os-{{ ansible_distribution|lower }}.yml"
    - "os-{{ ansible_os_family|lower }}.yml"
    - "os-default.yml"
+  tags:
+    - base
