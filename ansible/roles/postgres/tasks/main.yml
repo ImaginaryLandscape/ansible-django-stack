@@ -6,3 +6,9 @@
   when: install_postgres|default(True)
   tags:
     - postgres
+
+- name:
+  debug:
+    msg: "os-{{ ansible_distribution|lower }}-{{ ansible_distribution_release }}.yml"
+  tags:
+    - postgres_debug_ansible_var

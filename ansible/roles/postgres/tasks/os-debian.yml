@@ -1,14 +1,30 @@
 ---
 
+
+- name: Add Postgres repository key
+  apt_key: 
+    url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
+    state: present
+
+
+- name: Add apt package repo
+  apt_repository:
+    update_cache: "{{ update_apt_cache }}"
+    state: present
+    repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
+
+
 - name: Install Postgresql
   apt:
     update_cache: "{{ update_apt_cache }}"
     state: latest
     name:
-    - postgresql
-    - postgresql-contrib
+    - "postgresql-{{ postgres_version }}"
+    - "postgresql-client-{{ postgres_version }}"
+    - "postgresql-contrib-{{ postgres_version }}"
     - python-psycopg2
     - python3-psycopg2
   tags:
     - packages
     - debian-base
+

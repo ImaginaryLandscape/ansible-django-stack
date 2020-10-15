@@ -6,7 +6,7 @@ postgres__db_user: "{{ db_user }}"
 postgres__db_password: "{{ db_password }}"
 postgres__db_name: "{{ db_name }}"
 postgres__service: "postgresql"
-# postgres_version: "{{ postgres_version }}"
+postgres_version: "{{ postgres_version }}"
 postgres__postgresql_conf: '/etc/postgresql/{{postgres_version}}/main/postgresql.conf'
 postgres__data_directory: '/var/lib/postgresql/{{postgres_version}}/main'
 postgres__hba_file: '/etc/postgresql/{{postgres_version}}/main/pg_hba.conf'

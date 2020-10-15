@@ -11,3 +11,4 @@ Vagrantfile
 !example.Vagrantfile
 *.env
 inventory.yml
+dump/
