@@ -133,6 +133,8 @@
     lc_ctype='en_US.UTF-8'
     state=present
     template='template0'
+  tags:
+    - database_provision
 
 - name: ensure user does not have unnecessary privilege
   become: true
@@ -140,6 +142,8 @@
   postgresql_user:
     name={{ postgres__db_user }}
     role_attr_flags=NOSUPERUSER,NOCREATEDB
+  tags:
+    - database_provision
 
 - name: Copy DB dump file
   copy:
@@ -147,6 +151,9 @@
     dest: "{{ postgres__db_dump_file_dest }}"
   when: postgres__db_dump_file_src != ""
   ignore_errors: yes
+  tags:
+    - database_provision
+
 
 - name: Restore DB dump file
   become: true
@@ -157,3 +164,6 @@
     target: "{{ postgres__db_dump_file_dest }}"
   when: postgres__db_dump_file_src != ""
   ignore_errors: yes
+  tags:
+    - database_provision
+
