@@ -1,0 +1,28 @@
+# /etc/letsencrypt/cli.ini
+
+# Because we are using logrotate for greater flexibility, disable the
+# internal certbot logrotation.
+max-log-backups = 0
+
+# increase key size
+rsa-key-size = 4096
+ 
+# this address will receive renewal reminders
+email = "{{ letsencrypt__letsencrypt_cli_email }}"
+ 
+# turn off the ncurses UI, so this can be run as a cron job
+text = True
+ 
+# authenticate by placing a file in the webroot (under .well-known/acme-challenge/)
+# and then letting LE fetch it
+authenticator = nginx
+
+# agree tos
+agree-tos = True
+#non-interactive = True
+
+# no EFF email
+no-eff-email = True
+
+# Let’s Encrypt’s new ACMEv2 server
+server = https://acme-v02.api.letsencrypt.org/directory

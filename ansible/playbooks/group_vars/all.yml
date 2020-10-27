@@ -122,3 +122,6 @@ install_nrpe: True
 
 # NRPE
 nrpe_allowed_hosts: "127.0.0.1"
+
+# LETSENCRYPT
+letsencrypt_cli_email: email@email.com
