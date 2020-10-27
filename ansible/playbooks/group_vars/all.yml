@@ -83,6 +83,7 @@ swap_file_size_mb: 512
 ## VERSIONS ##
 python_version: "python3.5"   # or "python2.7"
 postgres_version: '10'
+postgis_version: '2.5'
 
 ## ROLE FLAGS TO ENABLE/DISABLE ##
 install_ntp: True

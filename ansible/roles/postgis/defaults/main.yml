@@ -1,4 +1,5 @@
 ---
 
 install_postgres: True
-postgis__version: "2.1"
+postgis__version: "{{ postgis_version }}"
+postgres__version: "{{ postgres_version }}"
