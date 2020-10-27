@@ -12,3 +12,4 @@ Vagrantfile
 *.env
 inventory.yml
 dump/
+.vscode

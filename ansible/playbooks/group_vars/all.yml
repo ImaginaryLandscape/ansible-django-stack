@@ -119,3 +119,6 @@ install_nrpe: True
 #       - "ssh-rsa AAAA..."
 #     shell: /bin/bash
 ## END UNIX USERS ##
+
+# NRPE
+nrpe_allowed_hosts: "127.0.0.1"

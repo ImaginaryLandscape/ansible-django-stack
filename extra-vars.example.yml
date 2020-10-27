@@ -47,3 +47,6 @@ install_nrpe: True
 # Ansible 2.4 now has good Python 3 support. Uncomment this to provision
 # using the Python 3 interprator.  Note, this is different than the "python_version"
 #ansible_python_interpreter: /usr/bin/python3
+
+# NRPE
+nrpe_allowed_hosts: "127.0.0.1"

@@ -6,5 +6,5 @@ nagios_nrpe__server_pid: /var/run/nagios/nrpe.pid
 nagios_nrpe__server_user: nagios
 nagios_nrpe__server_group: nagios
 nagios_nrpe__server_port: 5666
-nagios_nrpe__allowed_hosts: 127.0.0.1
+nagios_nrpe__allowed_hosts: "{{ nrpe_allowed_hosts }}"
 nagios_nrpe__debug: 0
