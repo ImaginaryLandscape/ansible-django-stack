@@ -43,8 +43,17 @@
 - name: Create self-signed SSL cert
   command: openssl req -new -nodes -x509 -subj "{{nginx__ssl_subj}}" -newkey rsa:2048 -days 65535 -keyout {{ nginx__ssl_dir }}server.key -out {{ nginx__ssl_dir }}server.crt -extensions v3_ca creates={{ nginx__ssl_dir }}server.crt
 
+- name: Download dhparam.pem
+  get_url:
+    url: https://ssl-config.mozilla.org/ffdhe2048.txt
+    dest: "{{ nginx__ssl_dir }}dhparam.pem"
+    mode: '2664'
+    register: result_get_url_dhparam
+    ignore_errors: true
+
 - name: Generate Diffie-Hellman
   command: openssl dhparam -out {{ nginx__ssl_dir }}dhparam.pem {{nginx__ssl_dhparam_length}} creates={{ nginx__ssl_dir }}dhparam.pem
+  when: result_get_url_dhparam is failed
 
 - name: Create htdocs directory
   file:
